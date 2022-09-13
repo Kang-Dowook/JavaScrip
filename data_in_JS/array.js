@@ -59,6 +59,7 @@ let menus = [
   '짜장면', '짬뽁', '탕수육'
 ];
 
+
 // 3. 배열을 다루는 방법
 let members = [
   '쿤칼레', 'Zerrard66', '우리생각해써', '흙토끼', 'End Miracle'
@@ -80,6 +81,7 @@ console.log(members[5]);
 members[7] = "i'm good";
 console.log(members[6]);
 console.log(members) // members의 length는 8로 증가하고 6번 인덱스 값은 'empty'로 비어있다고 표시
+
 
 // 4. 요소 삭제하기
 // 객체에서 값 삭제하는 메쏘드 delete
@@ -114,3 +116,64 @@ console.log(members);
 // 변경하기 기능
 // members.splice(2, 2, 'MaumNo', '산토기'); 갯수값을 0으로 하면 요소값을 그냥 추가만 가능
 // console.log(members);
+
+
+// 5. 배열의 메소드 (Array's Method)
+console.log(members);
+
+// 배열의 첫 요소를 삭제 : shift() -> 파라미터가 없다. 첫 요소를 삭제하고 나머지 요소의 index를 앞으로 당겨온다.
+members.shift();
+console.log(members);
+
+// 배열의 마지막 요소를 삭제 : pop() -> 파라미터가 없다. 마지막 요소를 삭제
+members.pop();
+console.log(members);
+
+// 배열의 첫 요소로 값 추가 : unshift(추가할 값) -> 첫 요소로 값을 추가. 파라미터로 추가할 값을 전달 받는다.
+members.unshift('NiceCodeit');
+console.log(members);
+
+// 배열의 마지막 요소로 값 추가 : push(추가할 값) -> 어떤 값을 마지막 요소로 추가. 파라미터로 추가할 값을 받는다.
+members.push('HiCodeit');
+console.log(members);
+
+// 배열의 메소드는 코드를 간결하고 깔끔하게 만들 수 있게 도와준다.
+
+
+console.log('< 배열 메소드 Tip >');
+// 6. 배열 메소드 Tip
+
+console.log('< 1)배열에서 특정 값 찾기 (indexOf / lastIndexOf) >');
+// 1) 배열에서 특정 값 찾기 (indexOf / lastIndexOf)
+// 배열에서 특정 값을 찾으려면 indexOf 메소드를 사용하면된다.
+
+// array.indexOf(item)을 하면 array 배열에 item이 포함되어 있는지 확인할 수 있다.
+// (1) 만약 포함되어 있다면, item이 있는 인덱스가 리턴.
+// (2) 포함되어 있지 않다면, -1이 리턴된다.
+// (3) 여러번 포함되어 있으면, 처음 발견된 인덱스가 리턴.
+let brands = ['Google', 'kakao', 'Naver', 'Kakao'];
+console.log(brands.indexOf('Kakao')); // 1
+console.log(brands.indexOf('Daum')); // -1
+
+// lasteIndexOf. indexOf와는 반대로 탐색을 뒤에서 부터 한다.
+// 위의 코드에서 'Kakao'를 lastIndexOf 메소드로 찾게 되면 마지막에 있는 인덱스가 리턴
+console.log(brands.indexOf('Kakao')); // 3
+console.log(brands.indexOf('Daum')); // -1
+
+console.log('< 2) 배열에서 특정 값이 있는지 확인하기 (includes) >');
+// 2) 배열에서 특정 값이 있는지 확인하기 (includes)
+// indexOf/lastIndexOf는 특정 값을 찾아서 해당 값의 index를 알려준다.
+// 하지만, 때로는 그냥 그 값이 배열안에 있는지, 그 여부만 확인하는 경우도 있다.
+// 그럴때 includes 라는 메소드를 활용.
+
+// array.includes(item)을 하게되면 array 배열에서 item이 있을 경우 true를,
+// 없을 경우 false 를 리던한다.
+console.log(brands.includes('Kakao'));
+console.log(brands.includes('Daum'));
+
+console.log('< 3) 배열 뒤집기 (reverse) >');
+// 3) 배열 뒤집기 (reverse)
+// reverse 라는 메소드를 활용하면, 배열의 순서를 뒤집을 수도 있다.
+console.log(brands);
+brands.reverse();
+console.log(brands);
