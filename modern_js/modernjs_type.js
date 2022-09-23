@@ -10,7 +10,7 @@
 // ES2015에 추가된 기본형 : BigInt -> 엄청 큰 숫자를 다룰 때!
 // 참조형(Reference Type) : Object
 
-// ### Symbol
+// ### 1. Symbol
 // 심볼(symbol)은 기본형 데이터 타입(primitive data type)중 하나.
 // 심볼은 코드 내에서 유일한 값을 가진 변수 이름을 만들 때 사용
 
@@ -34,7 +34,7 @@ const symbol1 = Symbol('this is Symbol');
 
 console.log(symbol1 === Symbol); // false
 
-// ### BigInst
+// ### 2. BigInst
 // BigInt는 자바스크립트에서 아주 큰 정수(integer)를 표현하기 위해 등장한 데이터 타입
 // 사실 자바스크립트의 숫자에는 안전한 정수 표현의 한꼐가 있다.
 // 자바스크립트에서 안전한 최대 정수는 2**53 - 1, 안전한 최소 정수는 -(2**53 - 1)이다.
@@ -71,7 +71,54 @@ console.log(Number(3n) * 2); // 6
 // 큰 범위의 정수를 안전하게 사용할 수 있다는 장점이 있지만,
 // 이런 제한 사항들 때문에 실제로 BigInt 타입의 값을 활용할 상황들이 그리 흔하진 않다.
 
-// ### typeof 연산자
+// ### 3. typeof 연산자
 // typeof 연산자를 통해 사용하는 값이 어떤 데이터 타입을 가지고 있는지 확인했다.
 // typeof 연산자는 키워드 다음 공백(띄어쓰기)을 두고 값을 작성해도 되고,
 // 함수를 사용하듯 괄호로 감싸서 사용할 수 도있었다.
+
+console.log(typeof 'codeit'); // string
+console.log(typeof user); // symbol
+console.log(typeof {}); // object
+console.log(typeof []); // object
+console.log(typeof true); // boolean
+console.log(typeof(false)); // boolean
+console.log(typeof(123)); // number
+console.log(typeof(NaN)); // number
+console.log(typeof(456n)); // bigint
+console.log(typeof(undefined)); // undefined
+// 하지만 한 가지 주의해야 할 점은 typeof 연산자의 결과가 모든 타입과 1:1로 매팅되지 않는다는점.
+
+// ### 1) null이 object ???
+// 일단, typeof null을 하면 문자열 null이 리턴되는게 아니라 문자열 obeject가 리턴.
+console.log(typeof null); // object
+
+// 이건 자바스크립트가 처음 구현될 때의 특별한 문법 설계 때문. 나중에 ECMAScript에서 수정이 제안되었었지만,
+// 이미 개발된 많은 프로젝트에 버그가 생기는 우려로 인해 반영되지 않고있음.
+
+// ### 2) function?
+// 그리고 함수에 typeof 연산자를 사용하면 function이라는 값을 리턴하는데
+function sayHi() {
+  console.log('Hi!?');
+}
+
+console.log(typeof sayHi); // function
+// 자바스크립트에서 함수는 객체로 취급. 그래서 간혼 object를 리턴할거라 예상하는 실수를 한다.
+// typeof 연산자를 함수에 사용하면 function이 리턴.
+
+
+// ### 4. 불린인 듯 불린 아닌 불린같은 값
+if (thisYear > 2015) { // 조건
+  console.log('I love JavaScript! :)');
+} else {
+  console.log('I haver JavaScript! :(');
+}
+
+if ('Codeit') { // 괄호() 안에 조건이 아닌 '문자열'
+  console.log('I love JavaScript! :)');
+} else {
+  console.log('I haver JavaScript! :(');
+}
+
+// 불린이 아닌 타입이 불린으로 형변환 되는 것
+// False로 평가되는 값 : false, null, undefined, NaN, 0, '' -> Falsy값
+// True로 병가되는 값 : 나머지 값들! -> Truthy 값. 빈배열[], 빈객체{} 값도 Truthy값임!

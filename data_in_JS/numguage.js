@@ -1,68 +1,56 @@
-// 숫자 표기법
-// 1. 지수표기법
-let millionaire = 100000000;
-let myNumber = 1e9;
+// 1. 숫자 표기법
+let millionaire = 1000000000;
+let myNumber = 1e9; // 지수 표기법 e9 = 10^9을 의미힘.
+
 console.log(millionaire);
 console.log(myNumber);
 console.log(millionaire === myNumber);
 
+console.log('지수표기법')
 console.log(25e5 === 2500000);
 console.log(5.3e3 === 5300);
 console.log(-6.1e8 === -610000000);
-
 console.log(16e-5 === 0.00016);
 console.log(3.5e-3 === 0.0035);
 console.log(-9.1e-5 === -0.000091);
 
-// 16진법(Hexadecimal) -> 16진법은 x를 쓰고
-let hex1 = 0xff; // 255 
+// 16진법 (Hexadecimal) -> x
+let hex1 = 0xff; // 255
 let hex2 = 0XFF; // 255
 
-//8진법 (Octal) -> o를 쓰고
+// 8진법 (Octal) -> o
 let octal = 0o377; // 255
 
-// 2진법 (binary numeral system) -> b를 씀
-let binary = 0b11111111; //255
+// 2진법 (binary numeral system) -> b
+let binary = 0b11111111 // 255
 
 console.log(hex1);
 console.log(hex2);
 console.log(octal);
 console.log(binary);
 
-// 2. 숫자형 메쏘드
+// 2. 숫자형 메소드
 let myNumber1 = 0.3591;
 
-//toFixed(범위는 0 ~ 100)
-console.log(myNumber1.toFixed(3)); // 파라미터로 받은 숫자값까지 반올림해서 보여줌.
-// 범위를 벗어나는 숫자값은 0으로 표현됨. ex) console.log(myNumber.toFixed(7));의 경우
-// 0.3591000 으로 표현
-// 그리고 toFixed의 결과 값은 문자형이기때문에 주의해서 사용해야됨.
+// 가장많이 사용하는 메쏘드 2개
 
-// 숫자형으로 변환해서 사용하도록한다. Number 또는 연산기호로 숫자형을 만들 수 있다.
-console.log(Number(myNumber1.toFixed(3)));
-console.log(+myNumber1.toFixed(2));
+// 1) toFixed(0 ~ 100) -> 소수를 다룰때 사용하는 메쏘드. 소숫점자릿를 정해주는 메쏘드. 정해진 자릿수를 넘을경우 직후의 숫자에 반올림함
+// 주의해야 할것은 결과값이 문자열이라는것! 연산을 하고 싶다면 숫자형으로 변환해서 사용
+// tip 자바스크립트에서는 숫자형으로 변활할때 Number를 쓰지만, +와 같이 연산자를 통해 숫자형으로 만들수 있다.
+console.log(myNumber1.toFixed(3));
 
-// toString(2 ~ 36) -> 파라미터로 전달받은 숫자의 진법으로 변환해주는 메쏘드
-let myNumber2 =255;
+// 2) toString(2 ~ 36)
+// 파라미터로 전달되는 값의 진법으로 숫자를 변환해주는 메쏘드
+// 주의! 결과값이 문자열이라는것 기억하기.
+let myNumber2 = 255;
 
-console.log(myNumber2.toString(2)); // 2진법
-console.log(myNumber2.toString(8)); // 8진법
-console.log(myNumber2.toString(16)); // 16진법
-// 숫자에 바로 사용도가능.
-// 정수형태 숫자값에 메소드를 사용할때는 .. 점 2개를 사용하거나 ()에 담아서 사용
 console.log(255..toString(2));
 console.log((255).toString(2));
+console.log(myNumber2.toString(2));
+console.log(myNumber2.toString(8));
+console.log(myNumber2.toString(16));
 
-// 3. 바보 자바스크립트
-let sum = 0.1 + 0.2;
-console.log(sum);
-// 값이 이상하게 나옴. 부정확하게 나오는 숫자의 이유는 사람과 컴퓨터가 숫자를 다루는 방식이 다르기때문
-// 컴퓨터는 0과 1로 표현하기 때문. 0.1같은 경우 이진수로 표현하면 무한소수로 표현
-// 이 때 자바스크립트, 파이썬, 등 각 프로그램에서 표현할 수 있는 숫자범위 내에서 반올림해버림
-// 여기서 발생하는 미세한 차이가 오차로 발생
-
-// 오차해결 방법!
-// toFixed, Math.round 등 활용
-console.log(Number(sum.toFixed(1))); // 0.3
-console.log(+sum.toFixed(1)); // 0.3
-console.log(Math.round(sum * 10) / 10); // 0.3
+// 변수에 담아 점표기법으로 사용하고 있지만, 숫자에 바로 적용도가능
+// 하지만, 이때 점표기법을 사용하면 255.toString(2) 소숫점으로 인식하기때문에 오류남
+// 숫자와 사용할때는 .. 이렇게 점을 2개 찍어줘야됨.
+// 아니면 ()로 묶은 다음 점표기법을 사용.

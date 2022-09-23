@@ -143,7 +143,7 @@ console.log(members);
 console.log('< 배열 메소드 Tip >');
 // 6. 배열 메소드 Tip
 
-console.log('< 1)배열에서 특정 값 찾기 (indexOf / lastIndexOf) >');
+console.log(' < 1)배열에서 특정 값 찾기 (indexOf / lastIndexOf) > ');
 // 1) 배열에서 특정 값 찾기 (indexOf / lastIndexOf)
 // 배열에서 특정 값을 찾으려면 indexOf 메소드를 사용하면된다.
 
