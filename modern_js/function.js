@@ -176,3 +176,102 @@ sayHi(); // ReferenceError
     countdown(n - 1);
   }
 })(5);
+
+// 2) 즉시 실행 함수의 활용
+// 즉시 실행 함수는 말 그대로 선언과 동시에 실행이 이뤄지기 때문에 일반적으로 프로그램 초기화 기능에 많이 활용
+(function init(){
+  // 프로그램이 실핼 될때 기본적으로 동작하는 코드들 ....
+})();
+
+//혹은 재사용이 필요 없는, 일회성 동작을 구성할 때 활용하기도 한다.
+const firstName = Young;
+const lastName = kang;
+
+const greetingMessage = (function() {
+  const fullName = `${firstName} ${lastName}`;
+
+  return `Hi! My name is ${fullName}`;
+})();
+// 이렇게 함수의 리턴값을 바로 변수에 할당하고 싶을 때 활용할 수 있다.
+
+// 그리고, 즉시 실행 사후에서 사용하는 변수들은 함수 내에서만 우효하기 때문에 이런점을
+// 활용하면, 일시적으로 사용할 변수의 이름들을 조금 자유롭게 작성할 수도 있다는점. 기억.
+
+// ### 6. 값으로서 함수
+const printJS = function() {
+  console.log('JavaScript');
+};
+
+console.log(typeof printJS);
+console.dir(0);
+console.dir('codeit');
+console.dir(true);
+console.dir(null);
+console.dir(undefined);
+console.dir({});
+console.dir([]);
+console.dir(printJS); // 객체와 비슷한 형태의 값을 가짐. 실제 여러개의 프로퍼티를 가지는 객체타입형태.
+// 자바스크립트 함수는 어디서나 할당될 수 있고 다양한 형태로 호출될 수 있다.
+
+// 1) 객체안의 프로퍼티로 사용가능
+const myObject = {
+  brand: 'Codeit',
+  bornYear: 2017,
+  isVeryNice: true,
+  sayHi: function(name) {
+    console.log(`Hi! ${name}`);
+  }
+};
+myObject.sayHi('JavaScript');
+
+
+// 2) 배열에 담아 호출
+const myArray = [
+  'codeit',
+  2017,
+  true,
+  function(name) {
+    console.log(`Hi! ${name}`);
+  },
+];
+myArray[3]('Codeit');
+
+// 3) 값으로 평가되는 함수는 다른함수의 파라미터로 전달가능.
+// const myBtn = document.querySelector('#myBtn');
+
+// myBtn.addEventListener('click', function(){    // DOM 이벤트를 다룰때 파라미터를 전달하는 부분에서 함수를 선언하는 방법 
+//   console.log('button is clicked!');
+// });
+
+// 4) 함수내에서 조건식에 의해 함수를 호출하거나 생략할 수 있다.
+function makeQuiz(quiz, answer, success, fail) {
+  if (prompt(quiz) === answer) {
+    console.log(success());
+  } else {
+    console.log(fail());
+  }
+};
+
+function getSuccess() {
+  return '정답!';
+};
+
+function getFail() {
+  return '오답!';
+};
+
+const question = '5 + 3 = ?';
+
+makeQuiz(question, '8', getSuccess, getFail); // 다른함수에 파라비터로 전달되는 함수를 콜백함수(Callback Function)
+// 여기선 getSuccess, getFail 이 두함수가 콜백함수
+
+// 5) 함수의 리턴값이 함수가 될수 있다. -> 함수가 함수를 호출하는 함수를 고차함수(High Order Function)
+function getPrintHi() {
+  return function () {
+    console.log('Hi!?');
+  };
+};
+const sayHi1 = getPrintHi ();
+sayHi1();
+
+getPrintHi()(); // 이렇게 호출하기도함
