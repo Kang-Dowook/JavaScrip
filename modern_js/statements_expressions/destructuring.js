@@ -87,21 +87,72 @@ function getArray() {
 
 const [el1, el2, el3] = getArray();
 // 함수가 리턴하는 값이 배열일때 그 배열을 활용하기
-
+// 함수와 배열
 console.log(el1);
 console.log(el2);
 console.log(el3);
 
-function printWinners(...arg) {
-  const [macbook, ipad, airpods, ...coupon] = arg;
+function printWinners([macbook, ipad, airpods, ...coupon]) { // 파라미터에서 바로 디스트럭팅 문법을 활용할 수 있다.
 
   console.log('이벤트 결과를 알려드립니다!');
   console.log(`맥북의 주인공은 '${macbook}'님 입니다.`);
   console.log(`아이패트의 주인공은 '${ipad}'님입니다..`);
   console.log(`에어판의 주인공은 '${airpods}'님입니다..`);
   console.log(`코드잇 3개울 수강권 주인공은.`);
-}
 
-for (let user of coupon) {
+  for (let user of coupon) {
+    console.log(`'${user}'님`);
+  }
 
+  console.log(`이상 총 ${coupon.length}명 입니다.`)
 }
+const ranks = ['효준', '효신', '재훈', '소원', '현승', '종훈'];
+
+printWinners(ranks);
+
+// 함수와 객체
+function getObject() {
+  return {
+    name: '코드잇',
+    birth: 2017,
+    job: '프로그래밍 강사',
+  }
+};
+
+const { name: brand, birth, job} = getObject;
+
+console.log(brand);
+console.log(birth);
+console.log(job);
+
+// 하지만, 객체의 경우 객체를 리턴하는 함수보다는 파라미터를 객체 형태로 작성하는 함수에서 유용하게 활용가능.
+// 함수 내부에서 프로퍼티를 활용할 때 매번 각 객체에 접근하는게 아니라 디스트럭팅 문법을 활용하게되면
+// 프로퍼티들을 간결하게 사용할 수 있다.
+const macbookOption = {
+  title: '맥북 프로 16형',
+  price : 3690000,
+  color: 'silver',
+  memory: '16GB',
+  storage: '1TB SSD 저장 장치',
+  display: '16gud Retina 디스플레이',
+};
+
+function printSummary({title, color, price}) {
+  // 트르트럭팅 문법을 활용하여 프로퍼티를 간경하게 사용한 예
+  // 또한 함수 내부에서 아래의 프로퍼티들만 사용할거라면 파라미터로 객체를 사용할 수 있다.
+  // const {title, color, price} = object;
+
+  console.log(`선택한 상품은 '${title}' 입니다.`);
+  console.log(`색상은 '${color}' 이며,`);
+  console.log(`가격은 '${price}' 입니다.`);
+};
+
+printSummary(macbookOption);
+
+// 심화학습할 문법 -> 중첩 객체 구조 분해 ( Nested Object Destructurning)
+
+// const btn = document.querySelector('#btn');
+
+// btn.addEventListener('click', ({target: {classList} })) => {
+//   classList.toggle('checked');
+// };
